@@ -44,6 +44,7 @@ $total_bayar = $total_harga + $ongkir;
 ?>
 
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -54,8 +55,25 @@ $total_bayar = $total_harga + $ongkir;
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="bg-gray-100">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+.font-global {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+</style>
+
+<body class="bg-gray-100 font-global">
     <div class="max-w-4xl mx-auto my-10 p-6 bg-white shadow rounded">
+        <div class="mt-6">
+            <a href="index.php"
+                class=" position-right inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                Kembali
+            </a>
+        </div>
         <h1 class="text-2xl font-bold mb-6">Terima Kasih Sudah Memesan</h1>
         <p class="mb-4 text-gray-700">Silahkan bayar sesuai dengan yang dipesan tadi yah dan kirim bukti pembayarannya
         </p>
@@ -68,63 +86,83 @@ $total_bayar = $total_harga + $ongkir;
             </p>
         </div>
 
-
-
+        ```
         <p class="mb-4 text-gray-700">Harap Diperhatikan ya bang/kak🙏🙏
         </p>
 
         <!-- Pilihan Bank -->
+        <!-- Pilihan Bank -->
         <h2 class="text-xl font-semibold mt-8 mb-4">Pilih Bank untuk Pembayaran</h2>
         <form id="paymentForm" action="upload_bukti.php" method="POST" enctype="multipart/form-data">
             <div class="mb-4">
-                <label for="bank" class="block text-gray-700 font-medium">Pilih Bank</label>
-                <select id="bank" name="bank" class="w-full border rounded px-3 py-2" required>
-                    <?php if(!empty($bank_list)): ?>
-                    <?php foreach($bank_list as $bank): ?>
-                    <option value="<?php echo $bank['id_bank']; ?>"
+                <label class="block text-gray-700 font-medium mb-2">Pilih Bank</label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <?php foreach ($bank_list as $bank): ?>
+                    <div class="bank-card border rounded-lg p-4 cursor-pointer hover:bg-blue-100 transition"
+                        data-id-bank="<?php echo $bank['id_bank']; ?>"
                         data-nama-bank="<?php echo htmlspecialchars($bank['nama_bank']); ?>"
                         data-nomor-rekening="<?php echo htmlspecialchars($bank['nomor_rekening']); ?>">
-                        <?php echo htmlspecialchars($bank['nama_bank']); ?>
-                    </option>
+                        <p class="font-semibold text-gray-800"><?php echo htmlspecialchars($bank['nama_bank']); ?></p>
+                    </div>
                     <?php endforeach; ?>
-                    <?php else: ?>
-                    <option value="">Tidak ada data bank</option>
-                    <?php endif; ?>
-                </select>
+                </div>
+
+                <!-- Hidden inputs -->
+                <input type="hidden" id="bank" name="bank">
                 <input type="hidden" id="nama_bank" name="nama_bank">
-                <p id="nomor_rekening" class="mt-2 text-gray-700"></p>
+
+                <!-- Nomor rekening tampil di sini -->
+                <p id="nomor_rekening" class="mt-4 text-blue-700 font-medium "></p>
             </div>
 
-            <!-- Upload Bukti Pembayaran -->
-            <div class="mb-4">
-                <label for="bukti_pembayaran" class="block text-gray-700 font-medium">Upload Bukti Pembayaran</label>
-                <input type="file" id="bukti_pembayaran" name="bukti_pembayaran" class="w-full border rounded px-3 py-2"
-                    required>
-            </div>
 
-            <input type="hidden" name="id_order" value="<?php echo $id_order; ?>">
 
-            <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-                Upload Bukti Pembayaran
+            <label for="bukti_pembayaran"
+                class="flex items-center justify-center w-full px-6 py-4 border-2 border-dashed border-blue-400 rounded-xl cursor-pointer hover:bg-blue-50 transition">
+                <svg class="w-8 h-8 text-blue-500 mr-3" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M12 12V4m0 0L8 8m4-4l4 4">
+                    </path>
+                </svg>
+                <span id="file_name_display" class="text-blue-500 font-medium text-base">Upload File</span>
+                <input type="file" id="bukti_pembayaran" name="bukti_pembayaran" class="hidden" required>
+            </label>
+
+
+
+            <input class="mt-4" type="hidden" name="id_order" value="<?php echo $id_order; ?>">
+
+            <button type="submit"
+                class=" mt-4 w-400 md:w-600 flex items-center justify-center h-screnn bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                Kirim
             </button>
         </form>
 
         <!-- Tombol Kembali ke Beranda -->
-        <div class="mt-6">
-            <a href="index.php"
-                class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-                Kembali ke Beranda
-            </a>
-        </div>
+
     </div>
 
     <script>
-    document.getElementById('bank').addEventListener('change', function() {
-        var selectedOption = this.options[this.selectedIndex];
-        var nomorRekening = selectedOption.getAttribute('data-nomor-rekening');
-        document.getElementById('nomor_rekening').textContent = 'Nomor Rekening: ' + nomorRekening;
-        document.getElementById('nama_bank').value = selectedOption.getAttribute('data-nama-bank');
+    document.querySelectorAll('.bank-card').forEach(card => {
+        card.addEventListener('click', function() {
+            // Hapus border terpilih sebelumnya
+            document.querySelectorAll('.bank-card').forEach(c => c.classList.remove('border-blue-500'));
+            // Tambahkan border untuk yang terpilih
+            this.classList.add('border-blue-500');
+
+            // Ambil data dari atribut
+            var idBank = this.getAttribute('data-id-bank');
+            var namaBank = this.getAttribute('data-nama-bank');
+            var nomorRekening = this.getAttribute('data-nomor-rekening');
+
+            // Set ke hidden input dan tampilkan rekening
+            document.getElementById('bank').value = idBank;
+            document.getElementById('nama_bank').value = namaBank;
+            document.getElementById('nomor_rekening').textContent = 'Nomor Rekening: ' + nomorRekening;
+        });
     });
+
 
     document.getElementById('paymentForm').addEventListener('submit', function(event) {
         event.preventDefault();
@@ -139,7 +177,27 @@ $total_bayar = $total_harga + $ongkir;
             }
         });
     });
+
+
+    document.getElementById('bukti_pembayaran').addEventListener('change', function() {
+        const fileInput = this;
+        const fileName = fileInput.files[0] ? fileInput.files[0].name : 'Upload File';
+        document.getElementById('file_name_display').textContent = fileName;
+
+        // Tampilkan preview
+        if (fileInput.files[0] && fileInput.files[0].type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('preview_image');
+                preview.src = e.target.result;
+                preview.classList.remove('hidden');
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    });
     </script>
+    ```
+
 </body>
 
 </html>

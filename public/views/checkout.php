@@ -118,7 +118,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['alamat']) && isset($_P
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+.font-global {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+</style>
+
+<body class="bg-gray-100 font-global">
     <div class="max-w-4xl mx-auto my-10 p-6 bg-white shadow rounded">
         <h1 class="text-2xl font-bold mb-6">Checkout & Keranjang Belanja</h1>
 

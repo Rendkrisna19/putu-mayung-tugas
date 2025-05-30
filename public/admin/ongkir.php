@@ -38,20 +38,30 @@ if ($result) {
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100 flex min-h-screen">
-    <?php 
-    include ("../../components/Slidebar.php")
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.font-global {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+</style>
+
+<body class="bg-white flex min-h-screen font-global">
+    <?php
+    include("../../components/Slidebar.php")
 
     ?>
-    <div class="max-w-4xl mx-auto my-8 p-6 bg-white rounded-lg shadow ">
-        <h1 class="text-2xl font-bold mb-4">Dashboard Ongkir</h1>
+    <div class="flex-grow p-6 transition-all duration-300">
+        <h1 class="text-2xl font-bold mb-4 text-indigo-600">Dashboard Ongkir</h1>
 
         <!-- Pesan sukses/error -->
-        <?php if(isset($success)): ?>
+        <?php if (isset($success)): ?>
         <div class="mb-4 p-3 bg-green-200 text-green-800 rounded">
             <?php echo $success; ?>
         </div>
-        <?php elseif(isset($error)): ?>
+        <?php elseif (isset($error)): ?>
         <div class="mb-4 p-3 bg-red-200 text-red-800 rounded">
             <?php echo $error; ?>
         </div>
@@ -83,7 +93,7 @@ if ($result) {
 
         <!-- Daftar Ongkir -->
         <h2 class="text-xl font-semibold mb-3">Daftar Ongkir</h2>
-        <?php if(count($ongkir_list) > 0): ?>
+        <?php if (count($ongkir_list) > 0): ?>
         <table class="w-full border-collapse">
             <thead>
                 <tr class="bg-gray-200">
@@ -95,11 +105,11 @@ if ($result) {
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($ongkir_list as $index => $ongkir): ?>
+                <?php foreach ($ongkir_list as $index => $ongkir): ?>
                 <tr class="<?php echo $index % 2 === 0 ? 'bg-gray-50' : 'bg-white'; ?>">
                     <td class="border px-4 py-2"><?php echo $index + 1; ?></td>
                     <td class="border px-4 py-2"><?php echo htmlspecialchars($ongkir['daerah']); ?></td>
-                    <td class="border px-4 py-2"><?php echo number_format($ongkir['tarif'],0,',','.'); ?></td>
+                    <td class="border px-4 py-2"><?php echo number_format($ongkir['tarif'], 0, ',', '.'); ?></td>
                     <td class="border px-4 py-2"><?php echo htmlspecialchars($ongkir['keterangan']); ?></td>
                     <td class="border px-4 py-2"><?php echo htmlspecialchars($ongkir['created_at']); ?></td>
                 </tr>

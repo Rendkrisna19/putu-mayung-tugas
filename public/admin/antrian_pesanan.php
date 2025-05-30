@@ -63,14 +63,14 @@ $result = $conn->query($sql);
     </style>
 </head>
 
-<body class="bg-gray-100">
-    <div class="flex">
+<body class="bg-white">
+    <div class="h-screnn">
         <!-- Sidebar -->
         <?php include('../../components/Slidebar.php'); ?>
 
         <!-- Konten Utama -->
-        <div class="content flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-6">Antrian Pesanan</h1>
+        <div class="flex-grow p-6 transition-all duration-300">
+            <h1 class="text-3xl font-bold mb-6 text-indigo-600">Antrian Pesanan</h1>
             <div class="bg-white p-4 rounded shadow overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
@@ -94,7 +94,7 @@ $result = $conn->query($sql);
                                 echo "<td class='px-4 py-2'>" . $row["jumlah"] . "</td>";
                                 echo "<td class='px-4 py-2'>";
                                 if (!empty($row["bukti_pembayaran"])) {
-                                    echo "<img src='../../uploads/" . $row["bukti_pembayaran"] . "' alt='Bukti Pembayaran' class='w-16 h-16 object-cover rounded cursor-pointer' onclick='openModal(this.src)'>";
+                                    echo "<img src='../uploads/" . $row["bukti_pembayaran"] . "' alt='Bukti Pembayaran' class='w-16 h-16 object-cover rounded cursor-pointer' onclick='openModal(this.src)'>";
                                 } else {
                                     echo "<span class='text-gray-500'>No Bukti</span>";
                                 }

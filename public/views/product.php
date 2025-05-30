@@ -1,5 +1,6 @@
 <?php
 include("../../config/config.php");
+include('../../components/Aos_animation.php');
 
 // Ambil data produk dari database
 $sql = "SELECT id_product, nama_product, deskripsi, gambar, harga, rasa, stok FROM products";
@@ -29,7 +30,7 @@ if ($result) {
     </style>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100" id="product">
     <div class="container mx-auto py-4">
         <h1 class="text-3xl font-bold text-center mb-8 text-indigo-600">Produk Kami</h1>
         <div class="container mx-auto max-w-4xl">

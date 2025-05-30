@@ -21,22 +21,30 @@ if ($result) {
     <title>List Produk</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-somehashhere" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+
+    .font-global {
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
     </style>
 </head>
 
-<body class="bg-gray-100">
-    <div class="flex">
+<body class="bg-white font-global">
+    <div class="min-h-screen">
         <!-- Sidebar -->
         <?php include('../../components/Slidebar.php'); ?>
 
         <!-- Konten Utama -->
-        <div class="content flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-6">Daftar Produk</h1>
+        <div class="flex-grow p-6 transition-all duration-300">
+            <h1 class="text-3xl font-bold mb-6 text-indigo-600">Daftar Produk</h1>
 
             <!-- Pesan Sukses atau Error -->
             <?php if(isset($_SESSION['success'])): ?>

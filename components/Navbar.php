@@ -1,3 +1,29 @@
+<?php
+
+include("../../config/config.php");
+
+$user_id = $_SESSION["user_id"] ?? null;
+$name = "Guest";
+$avatar = "https://i.pravatar.cc/100?u=guest"; // default avatar
+
+if ($user_id) {
+    $sql = "SELECT name, foto FROM users WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($row = $result->fetch_assoc()) {
+        if (!empty($row['foto'])) {
+$avatar = "../uploads/" . htmlspecialchars($row['foto']);        }
+        if (!empty($row['name'])) {
+            $name = htmlspecialchars($row['name']);
+        }
+    }
+    $stmt->close();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,12 +77,27 @@
                 </button>
 
                 <div id="profileDropdown"
-                    class="hidden absolute right-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-50">
-                    <a href="../../auth/admin/auth.php" class="block px-4 py-2 hover:bg-gray-100">Login Admin</a>
+                    class="hidden absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-lg z-50">
+
+                    <!-- Bagian atas dengan avatar dan nama -->
+                    <div class="flex items-center px-4 py-3 border-b border-gray-200">
+                        <img src="<?= $avatar ?>" alt="Avatar" class="w-10 h-10 rounded-full mr-3 object-cover">
+                        <div>
+                            <p class="font-semibold text-sm"><?= $name ?></p> <a href="../views/edit_profile.php"
+                                class="text-xs text-blue-500 hover:underline">Edit
+                                Profile</a>
+                        </div>
+                    </div>
+
+                    <!-- Link ke halaman login admin -->
+                    <!-- <a href="../../auth/admin/auth.php" class="block px-4 py-2 hover:bg-gray-100">Login Admin</a> -->
+
+                    <!-- Tombol logout -->
                     <form action="../../auth/login.php" method="POST">
                         <button type="submit" class="block w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
                     </form>
                 </div>
+
             </div>
 
             <!-- Hamburger Icon (Mobile) -->

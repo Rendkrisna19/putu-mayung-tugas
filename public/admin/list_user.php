@@ -31,6 +31,15 @@ if ($result) {
     <!-- Font Awesome CDN -->
 
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+    .font-global {
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
     @media (max-width: 768px) {
         .content {
             margin-left: 60px;
@@ -39,7 +48,7 @@ if ($result) {
     </style>
 </head>
 
-<body class="bg-gray-100 flex min-h-screen">
+<body class="bg-gray-100 flex min-h-screen font-global">
     <div class="flex">
         <!-- Sidebar -->
         <?php include('../../components/Slidebar.php'); ?>
@@ -64,6 +73,7 @@ if ($result) {
                     <tbody class="bg-white divide-y divide-gray-200">
                         <?php if(!empty($users)): ?>
                         <?php foreach($users as $user): ?>
+                        <?php if($user['id'] == 30) continue; // Jangan tampilkan user dengan ID 30 ?>
                         <tr>
                             <td class="px-4 py-2"><?php echo htmlspecialchars($user['email']); ?></td>
                             <td class="px-4 py-2"><?php echo htmlspecialchars($user['phone']); ?></td>

@@ -1,4 +1,26 @@
 <?php
+include("../../config/config.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['order_id'])) {
+    $order_id = $_POST['order_id'];
+
+    // Misalnya update status order
+    $sql = "UPDATE order_items SET status = 'confirmed' WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $order_id);
+
+    if ($stmt->execute()) {
+        header("Location: daftar_pesanan.php?success=1");
+        exit();
+    } else {
+        echo "Gagal mengkonfirmasi pesanan.";
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
+<?php
 session_start();
 include("../../config/config.php");
 
@@ -25,6 +47,15 @@ $result = $conn->query($sql);
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+    .font-global {
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
     .modal {
         display: none;
         position: fixed;
@@ -60,16 +91,18 @@ $result = $conn->query($sql);
         cursor: pointer;
     }
     </style>
+
+
 </head>
 
-<body class="bg-gray-100">
-    <div class="flex">
+<body class="bg-white font-global">
+    <div class="h-screen">
         <!-- Sidebar -->
         <?php include('../../components/Slidebar.php'); ?>
 
         <!-- Konten Utama -->
-        <div class="content flex-1 p-6">
-            <h1 class="text-3xl font-bold mb-6">Daftar Pesanan</h1>
+        <div class="flex-grow p-6 transition-all duration-300">
+            <h1 class="text-3xl font-bold mb-6 text-indigo-600">Daftar Pesanan</h1>
             <div class="bg-white p-4 rounded shadow overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
