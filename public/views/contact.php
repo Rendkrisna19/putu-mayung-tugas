@@ -188,6 +188,10 @@ if (!isset($_SESSION['user_id'])) {
             </div>
         </div>
     </section>
+    <?php 
+  include ("../../components/Footer.php");?>
 </body>
+
+
 
 </html>

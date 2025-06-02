@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-<html lang="en">
+<!-- <html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -89,4 +89,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </body>
 
-</html>
+</html> -->

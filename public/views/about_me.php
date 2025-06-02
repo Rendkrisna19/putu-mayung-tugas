@@ -36,7 +36,7 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 
-    <body class="bg-white font-global">
+    <body class="bg-white font-global ">
         <section class="py-20 px-4">
             <div class="container mx-auto max-w-7xl">
                 <!-- Section Header -->
@@ -199,6 +199,8 @@ if (!isset($_SESSION['user_id'])) {
 
             </div>
         </section>
+        <?php 
+  include ("../../components/Footer.php");?>
     </body>
 </body>
 

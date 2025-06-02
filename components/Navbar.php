@@ -57,6 +57,7 @@ $avatar = "../uploads/" . htmlspecialchars($row['foto']);        }
             <a href="../views/index.php" class="hover:text-gray-300 nav-link">Home</a>
             <a href="../views/about_me.php" class="hover:text-gray-300 nav-link">About Us</a>
             <a href="../views/contact.php" class="hover:text-gray-300 nav-link">Contact</a>
+            <a href="../views/testimoni_pelanggan.php" class="hover:text-gray-300 nav-link">Testimoni</a>
 
         </div>
 
@@ -73,11 +74,12 @@ $avatar = "../uploads/" . htmlspecialchars($row['foto']);        }
 
             <div class="relative">
                 <button onclick="toggleDropdown()" class="focus:outline-none">
-                    <i class="fas fa-user-circle text-2xl text-white"></i>
+                    <img src="<?= $avatar ?>" alt="Avatar" class="w-10 h-10 rounded-full mr-3 object-cover">
                 </button>
 
                 <div id="profileDropdown"
                     class="hidden absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-lg z-50">
+
 
                     <!-- Bagian atas dengan avatar dan nama -->
                     <div class="flex items-center px-4 py-3 border-b border-gray-200">
@@ -109,10 +111,11 @@ $avatar = "../uploads/" . htmlspecialchars($row['foto']);        }
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-gray-800 p-4 mt-4 rounded-lg shadow-lg">
+    <div id="mobile-menu" class="hidden md:hidden bg-indigo-800 p-4 mt-4 rounded-lg shadow-lg">
         <a href="../views/index.php" class="block py-2 nav-link">Home</a>
         <a href="../views/about_me.php" class="block py-2 nav-link">About</a>
         <a href="../views/contact.php" class="block py-2 nav-link">Contact</a>
+        <a href="../views/testimoni_pelanggan.php" class="block py-2 nav-link">Testimoni</a>
     </div>
 </nav>
 

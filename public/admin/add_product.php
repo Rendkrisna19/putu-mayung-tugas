@@ -80,13 +80,13 @@ VALUES ('$nama_product', '$deskripsi', '$gambar', $harga, '$rasa', $stok)";
     <div class=" min-h-screen"></div>
     <!-- Sidebar -->
     <?php include("../../components/Slidebar.php")
-
-
     ?>
     <!-- Konten Utama -->
-    <div class="flex-grow p-6 transition-all duration-300">
-        <div class="max-w-xl p-6 bg-white rounded-lg shadow">
-            <h1 class="text-2xl font-bold mb-4 text-indigo-600">Tambah Produk</h1>
+    <div class="min-h-screen">
+        <div class="p-6 flex-1 overflow-y-auto">
+            <div class="flex justify-between items-center mb-2">
+                <h1 class="text-3xl font-extrabold text-indigo-700 tracking-tight">Tambah Produk Baru</h1>
+            </div>
 
             <!-- Pesan sukses/error -->
             <?php if (isset($success)): ?>
@@ -100,48 +100,60 @@ VALUES ('$nama_product', '$deskripsi', '$gambar', $harga, '$rasa', $stok)";
             <?php endif; ?>
 
             <form action="" method="POST" enctype="multipart/form-data">
-                <div class="mb-4">
-                    <label for="nama_product" class="block text-gray-700 font-medium">Nama Produk</label>
-                    <input type="text" id="nama_product" name="nama_product" required
-                        class="w-full border rounded px-3 py-2 mt-1">
-                </div>
-                <div class="mb-4">
-                    <label for="deskripsi" class="block text-gray-700 font-medium">Deskripsi</label>
-                    <textarea id="deskripsi" name="deskripsi" rows="4" required
-                        class="w-full border rounded px-3 py-2 mt-1"></textarea>
-                </div>
-                <div class="mb-4 grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                        <label for="harga" class="block text-gray-700 font-medium">Harga (Rp)</label>
-                        <input type="number" id="harga" name="harga" required
-                            class="w-full border rounded px-3 py-2 mt-1">
+                        <div class="mb-6">
+                            <label for="nama_product" class="block text-gray-700 font-semibold mb-2">Nama Produk</label>
+                            <input type="text" id="nama_product" name="nama_product" required
+                                class="w-full border-2 border-indigo-200 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition">
+                        </div>
+                        <div class="mb-6">
+                            <label for="harga" class="block text-gray-700 font-semibold mb-2">Harga (Rp)</label>
+                            <input type="number" id="harga" name="harga" required
+                                class="w-full border-2 border-indigo-200 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition">
+                        </div>
+                        <div class="mb-6">
+                            <label for="stok" class="block text-gray-700 font-semibold mb-2">Stok</label>
+                            <input type="number" id="stok" name="stok" required
+                                class="w-full border-2 border-indigo-200 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition">
+                        </div>
+                        <div class="mb-6">
+                            <label for="rasa" class="block text-gray-700 font-semibold mb-2">Rasa</label>
+                            <input type="text" id="rasa" name="rasa" required
+                                class="w-full border-2 border-indigo-200 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition">
+                        </div>
                     </div>
                     <div>
-                        <label for="stok" class="block text-gray-700 font-medium">Stok</label>
-                        <input type="number" id="stok" name="stok" required
-                            class="w-full border rounded px-3 py-2 mt-1">
+                        <div class="mb-6">
+                            <label for="deskripsi" class="block text-gray-700 font-semibold mb-2">Deskripsi</label>
+                            <textarea id="deskripsi" name="deskripsi" rows="7" required
+                                class="w-full border-2 border-indigo-200 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition"></textarea>
+                        </div>
+                        <div class="mb-6">
+                            <label for="gambar" class="block text-gray-700 font-semibold mb-2">Gambar Produk</label>
+                            <input type="file" id="gambar" name="gambar" accept="image/*"
+                                class="w-full border-2 border-indigo-200 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition bg-gray-50">
+                        </div>
                     </div>
                 </div>
-                <div class="mb-4">
-                    <label for="rasa" class="block text-gray-700 font-medium">Rasa</label>
-                    <input type="text" id="rasa" name="rasa" required class="w-full border rounded px-3 py-2 mt-1">
+                <div class="flex justify-end">
+                    <button type="submit"
+                        class="bg-gradient-to-r from-indigo-500 to-blue-500 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:scale-105 hover:from-indigo-600 hover:to-blue-600 transition-all duration-200">
+                        <span class="inline-flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            Tambah Produk
+                        </span>
+                    </button>
                 </div>
-                <div class="mb-4">
-                    <label for="gambar" class="block text-gray-700 font-medium">Gambar Produk</label>
-                    <input type="file" id="gambar" name="gambar" accept="image/*"
-                        class="w-full border rounded px-3 py-2 mt-1">
-                </div>
-                <button type="submit"
-                    class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-                    Tambah Produk
-                </button>
             </form>
         </div>
-    </div>
 
-    <script>
+        <script>
 
-    </script>
+        </script>
 </body>
 
 </html>

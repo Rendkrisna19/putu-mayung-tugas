@@ -90,7 +90,7 @@
             </div>
             <div aria-hidden="true" class="mt-10 lg:mt-0">
                 <img width="600" height="600"
-                    src="https://sosialita.id/assets/uploads/webp/fotoproduk/crop/ot1ah0RL20240311182625.jpg.webp"
+                    src="https://png.pngtree.com/png-clipart/20240115/original/pngtree-takeaway-electric-vehicle-ai-delivery-elements-three-dimensional-buckle-free-pattern-png-image_14121739.png"
                     class="mx-auto rounded-lg shadow-lg dark-bg-gray-500" style="color:transparent">
             </div>
         </div>
