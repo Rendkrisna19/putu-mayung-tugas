@@ -1,13 +1,16 @@
 <?php
 session_start();
 include("../../config/config.php");
-// include("../../components/Navbar.php");
 
-// Cek jika user belum login
+// Setelah login berhasil, pastikan di login:
+// $_SESSION['user_id'] = $user_data['id']; // contoh penamaan konsisten user_id
+
+// Redirect jika user belum login
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../../auth/login.php");
     exit;
 }
+
 
 $user_id = $_SESSION['user_id'];
 

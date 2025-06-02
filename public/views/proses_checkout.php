@@ -1,5 +1,15 @@
 <?php
+session_start();
+include("../../config/config.php");
 
+// Setelah login berhasil, pastikan di login:
+// $_SESSION['user_id'] = $user_data['id']; // contoh penamaan konsisten user_id
+
+// Redirect jika user belum login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../auth/login.php");
+    exit;
+}
 include("../../config/config.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

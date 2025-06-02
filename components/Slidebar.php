@@ -65,13 +65,13 @@
                             <span class="ml-4 hidden menu-text">Daftar Pesanan</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="../admin/antrian_pesanan.php"
                             class="flex items-center px-4 py-2 hover:bg-blue-700 transition">
                             <i class="fas fa-tasks text-lg w-6 text-center"></i>
                             <span class="ml-4 hidden menu-text">Antrian Pesanan</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="../admin/list_penjualan.php"
                             class="flex items-center px-4 py-2 hover:bg-blue-700 transition">

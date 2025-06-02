@@ -1,7 +1,14 @@
 <?php 
 session_start();
-$name = isset($_SESSION["user"]["name"]) ? $_SESSION["user"]["name"] : "Guest";
-$avatar = "https://i.pravatar.cc/100?u=" . urlencode($name); 
+include("../../config/config.php");
+// include("../../components/Navbar.php");
+
+// Cek jika user belum login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../auth/login.php");
+    exit;
+}
+
 include ("../../components/Navbar.php");
 ?>
 

@@ -2,6 +2,16 @@
 session_start();
 include("../../config/config.php");
 
+// Setelah login berhasil, pastikan di login:
+// $_SESSION['user_id'] = $user_data['id']; // contoh penamaan konsisten user_id
+
+// Redirect jika user belum login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../auth/login.php");
+    exit;
+}
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['index'])) {
     $index = (int) $_POST['index'];
     if (isset($_SESSION['cart'][$index])) {

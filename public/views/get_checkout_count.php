@@ -2,7 +2,17 @@
 include '../../config/config.php'; // Sesuaikan dengan koneksi database
 
 session_start();
-$user_id = $_SESSION['user_id']; // Pastikan user sudah login
+include("../../config/config.php");
+
+// Setelah login berhasil, pastikan di login:
+// $_SESSION['user_id'] = $user_data['id']; // contoh penamaan konsisten user_id
+
+// Redirect jika user belum login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../auth/login.php");
+    exit;
+}
+
 
 $query = "SELECT COUNT(*) AS total FROM checkout WHERE user_id = ?";
 $stmt = $conn->prepare($query);

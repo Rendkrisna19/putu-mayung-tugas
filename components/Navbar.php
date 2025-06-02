@@ -89,8 +89,9 @@ $avatar = "../uploads/" . htmlspecialchars($row['foto']);        }
                         </div>
                     </div>
 
-                    <!-- Link ke halaman login admin -->
-                    <!-- <a href="../../auth/admin/auth.php" class="block px-4 py-2 hover:bg-gray-100">Login Admin</a> -->
+
+                    <a href="../views/status_pesanan.php" class="block px-4 py-2 hover:bg-gray-100">Status Pesanan
+                        saya</a>
 
                     <!-- Tombol logout -->
                     <form action="../../auth/login.php" method="POST">

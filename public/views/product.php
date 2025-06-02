@@ -1,5 +1,13 @@
 <?php
 include("../../config/config.php");
+// include("../../components/Navbar.php");
+
+// Cek jika user belum login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../auth/login.php");
+    exit;
+}
+
 include('../../components/Aos_animation.php');
 
 // Ambil data produk dari database

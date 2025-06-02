@@ -1,5 +1,18 @@
 <?php 
-include ("../../components/Navbar.php")
+session_start();
+include ("../../components/Navbar.php");
+
+include("../../config/config.php");
+
+// Setelah login berhasil, pastikan di login:
+// $_SESSION['user_id'] = $user_data['id']; // contoh penamaan konsisten user_id
+
+// Redirect jika user belum login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../auth/login.php");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
